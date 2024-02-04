@@ -1,6 +1,13 @@
-const server = require('http').createServer((req, res) => {
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
   res.end('Hello from Node.js app\n');
 });
 
-const port = 3000;
-server.listen(port, () => console.log(`Server running at http://localhost:${port}/`));
+const port = 80;
+
+// Listen on port 80, requires elevated privileges
+server.listen(port, '0.0.0.0', () => {
+  console.log(`Server running at http://localhost:${port}/`);
+});
